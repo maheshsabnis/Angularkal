@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { Product } from './../../models/app.product.model';
+import { Categories, Manufacturers } from "./../../models/app.constants";
+import { ProductLogic } from "./../../models/app.logic";
+@Component({
+    selector: 'app-productform-component',
+    templateUrl: './app.productform.view.html'
+})
+export class ProductFormComponent implements OnInit {
+    product: Product;
+    products: Array<Product>;
+    private logic: ProductLogic;
+    categories = Categories;
+    manufacturers = Manufacturers;
+    tableColumns: Array<string>;
+    constructor() {
+        this.product = new Product(0, '', '', '', '', '', 0);
+        this.products = new Array<Product>();
+        this.logic = new ProductLogic();
+        this.tableColumns = new Array<string>();
+    }
+
+    ngOnInit(): void {
+        for (let c in this.product) {
+            this.tableColumns.push(c);
+        }
+        //console.log(JSON.stringify(this.tableColumns));
+        this.products = this.logic.getProducts();
+    }
+
+    clear(): void {
+        this.product = new Product(0, '', '', '', '', '', 0);
+    }
+    save(): void {
+        this.products = this.logic.createProduct(this.product);
+        alert(JSON.stringify(this.products));
+    }
+
+    getSelectedProduct(p: Product): void {
+        // this.product = p;
+        // create a new location ref. for p to which 
+        // this.product will point
+        this.product = Object.create(p, {});
+    }
+
+}

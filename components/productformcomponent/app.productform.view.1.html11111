@@ -1,0 +1,76 @@
+<div class="container" [hidden]="!isFormSubmitted">
+    <form name="frmprd" (ngSubmit)="save()" [formGroup]="frmPrd">
+        <div class="form-group">
+            <label for="ProductRowId">ProductRowId</label>
+            <input name="ProductRowId" type="text" class="form-control" [(ngModel)]="product.ProductRowId" required
+                pattern="[0-9]*" minlength="2" maxlength="5" formControlName="ProductRowId">
+            <div class="alert alert-danger">
+                <span>Product Row Id is Must</span>
+                <span>Product Row Id Must be Numeric</span>
+                <span>Product Row Id must be 2 digits min in length</span>
+                <span>Product Row Id must bt 5 digits max in length </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ProductId">ProductId</label>
+            <input type="text" name="ProductId" formControlName="ProductId" class="form-control"
+                [(ngModel)]="product.ProductId">
+        </div>
+        <div class="form-group">
+            <label for="ProductName">ProductName</label>
+            <input type="text" name="ProductName" formControlName="ProductName" class="form-control"
+                [(ngModel)]="product.ProductName">
+        </div>
+        <div class="form-group">
+            <label for="CategoryName">CategoryName</label>
+            <select class="form-control" name="CategoryName" formControlName="CategoryName"
+                [(ngModel)]="product.CategoryName">
+                <option>Select Category Name</option>
+                <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Manufacturer">Manufacturer</label>
+            <select class="form-control" name="Manufacturer" formControlName="Manufacturer"
+                [(ngModel)]="product.Manufacturer">
+                <option>Select Manufacturer</option>
+                <option *ngFor="let m of manufacturers" value="{{m}}">{{m}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" name="Description" formControlName="Description" class="form-control"
+                [(ngModel)]="product.Description">
+        </div>
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input type="text" name="Price" formControlName="Price" class="form-control" [(ngModel)]="product.Price">
+        </div>
+        <div class="from-group">
+            <input type="button" value="Clear" class="btn btn-default" (click)="clear()">
+            <input type="submit" value="Save" class="btn btn-success">
+        </div>
+    </form>
+</div>
+<br>
+<div class="container" [hidden]="isFormSubmitted">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td *ngFor="let c of tableColumns">{{c}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products" (click)="getSelectedProduct(p)">
+                <td *ngFor="let c of tableColumns">{{p[c]}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <input type="button" value="Load Form" (click)="loadForm()" class="btn btn-warning">
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
