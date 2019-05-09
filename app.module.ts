@@ -12,6 +12,10 @@ import { DeptComponent } from './components/componentinteraction/app.dept.compon
 import { EmpComponent } from './components/componentinteraction/app.emp.component';
 import { DeptSenderComponent } from './components/componentinteractionservice/app.deptsender.component';
 import { EmpReceiverComponent } from './components/componentinteractionservice/app.empreceiver.component';
+import { MainComponent } from './routingapp/components/app.main.component';
+import { HomeComponent } from './routingapp/components/home/app.home.component';
+import { ContactComponent } from './routingapp/components/contact/app.contact.component';
+import { AboutComponent } from './routingapp/components/about/app.about.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { EmpReceiverComponent } from './components/componentinteractionservice/a
     DeptComponent,
     EmpComponent,
     DeptSenderComponent,
-    EmpReceiverComponent
+    EmpReceiverComponent,
+    MainComponent,
+    HomeComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +39,6 @@ import { EmpReceiverComponent } from './components/componentinteractionservice/a
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [DeptSenderComponent,
-    EmpReceiverComponent]
+  bootstrap: [MainComponent]
 })
 export class AppModule { }
